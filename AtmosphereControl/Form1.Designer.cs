@@ -38,10 +38,11 @@
 			this.pressure = new System.Windows.Forms.Label();
 			this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
-			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.Conditioner = new System.Windows.Forms.Label();
 			this.checkBox1 = new System.Windows.Forms.CheckBox();
 			this.DevicesTemperature = new System.Windows.Forms.Label();
+			this.t_Info = new System.Windows.Forms.Timer(this.components);
+			this.label2 = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -137,18 +138,10 @@
 			this.timer1.Interval = 1000;
 			this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
 			// 
-			// textBox1
-			// 
-			this.textBox1.Location = new System.Drawing.Point(244, 267);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(100, 22);
-			this.textBox1.TabIndex = 8;
-			this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-			// 
 			// Conditioner
 			// 
 			this.Conditioner.AutoSize = true;
-			this.Conditioner.Location = new System.Drawing.Point(244, 223);
+			this.Conditioner.Location = new System.Drawing.Point(150, 223);
 			this.Conditioner.Name = "Conditioner";
 			this.Conditioner.Size = new System.Drawing.Size(75, 16);
 			this.Conditioner.TabIndex = 9;
@@ -173,15 +166,28 @@
 			this.DevicesTemperature.Size = new System.Drawing.Size(0, 16);
 			this.DevicesTemperature.TabIndex = 11;
 			// 
+			// t_Info
+			// 
+			this.t_Info.Tick += new System.EventHandler(this.t_Info_Tick);
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(342, 377);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(44, 16);
+			this.label2.TabIndex = 12;
+			this.label2.Text = "label2";
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Controls.Add(this.label2);
 			this.Controls.Add(this.DevicesTemperature);
 			this.Controls.Add(this.checkBox1);
 			this.Controls.Add(this.Conditioner);
-			this.Controls.Add(this.textBox1);
 			this.Controls.Add(this.numericUpDown1);
 			this.Controls.Add(this.pressure);
 			this.Controls.Add(this.amount_of_carbon_diaxide);
@@ -210,10 +216,11 @@
 		private System.Windows.Forms.Label pressure;
 		private System.Windows.Forms.NumericUpDown numericUpDown1;
 		private System.Windows.Forms.Timer timer1;
-		private System.Windows.Forms.TextBox textBox1;
 		private System.Windows.Forms.Label Conditioner;
 		private System.Windows.Forms.CheckBox checkBox1;
 		private System.Windows.Forms.Label DevicesTemperature;
+		private System.Windows.Forms.Timer t_Info;
+		private System.Windows.Forms.Label label2;
 	}
 }
 

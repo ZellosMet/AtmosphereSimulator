@@ -9,11 +9,17 @@ namespace AtmosphereControl
 	internal class Devices
 	{
 		readonly double WORKING_TEMPERATURE = 45;
+		double device_surface_area = 6; // Условно куб 1х1х1м 
 		double current_temperature;
 		bool devices_active;
 		public double WorkingTemperature
 		{
 			get { return WORKING_TEMPERATURE; }
+		}
+		public double DeviceSurfaceArea
+		{
+			get { return device_surface_area; }
+			set { device_surface_area = value; }
 		}
 		public double CurrentTemperature
 		{
@@ -40,7 +46,7 @@ namespace AtmosphereControl
 		}
 		public void OverclokingDevices()
 		{
-			if (DevicesActive && CurrentTemperature < WORKING_TEMPERATURE) CurrentTemperature += 0.5;
+			if (DevicesActive && CurrentTemperature < WORKING_TEMPERATURE) CurrentTemperature += 1;
 		}
 	}
 }
