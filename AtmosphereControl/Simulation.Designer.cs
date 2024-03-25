@@ -185,7 +185,7 @@
 			this.l_ventilation.AutoSize = true;
 			this.l_ventilation.Location = new System.Drawing.Point(159, 223);
 			this.l_ventilation.Name = "l_ventilation";
-			this.l_ventilation.Size = new System.Drawing.Size(86, 20);
+			this.l_ventilation.Size = new System.Drawing.Size(69, 16);
 			this.l_ventilation.TabIndex = 13;
 			this.l_ventilation.Text = "Ventilation";
 			// 

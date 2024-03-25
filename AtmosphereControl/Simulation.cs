@@ -91,7 +91,8 @@ namespace AtmosphereControl
 			numericUpDown1.BeginInvoke((MethodInvoker)(() => numericUpDown1.Value = Convert.ToInt32(atmosphere.Temperature)));			
 			Conditioner.BeginInvoke((MethodInvoker)(() => Conditioner.Text = automation.ConditionerActive ? "Кондиционер активен" : "Кондиционер не активен"));
 			l_ventilation.BeginInvoke((MethodInvoker)(() => l_ventilation.Text = automation.VentilationActive ? "Вентеляция активена" : "Вентеляция не активена"));
-			label2.BeginInvoke((MethodInvoker)(() => label2.Text = $"{automation.VentilationActive} {automation.PowerVentilation}"));
+			label2.BeginInvoke((MethodInvoker)(() => label2.Text = $"{automation.ConditionerActive} {automation.PowerConditioner}"));
+			label2.BeginInvoke((MethodInvoker)(() => label2.Text += $" {automation.VentilationActive} {automation.PowerVentilation}"));
 		}
 	}
 }

@@ -99,9 +99,8 @@ namespace AtmosphereControl
 
 			if (conditioner_active && atmosphere.Temperature - TargetTemperature <= 5) power_conditioner = 1;
 			if (conditioner_active && atmosphere.Temperature - TargetTemperature > 5 && atmosphere.Temperature - TargetTemperature <= 10) power_conditioner = 5;
-			if (conditioner_active && atmosphere.Temperature - TargetTemperature > 10 && atmosphere.Temperature - TargetTemperature <= 15) power_conditioner = 10;
 			if (conditioner_active && atmosphere.Temperature - TargetTemperature > 15 && atmosphere.Temperature - TargetTemperature <= 20) power_conditioner = 15;
-			if (conditioner_active && atmosphere.Temperature - TargetTemperature > 20 && atmosphere.Temperature - TargetTemperature <= 25) power_conditioner = 20;
+			//if (conditioner_active && atmosphere.Temperature - TargetTemperature > 15 && atmosphere.Temperature - TargetTemperature <= 20) power_conditioner = 20;
 
 			if (ventilation_active && atmosphere.Pressure - MAX_TARGET_PRESSURE <= 1000) power_ventilation = 1000;
 			if (ventilation_active && atmosphere.Pressure - MAX_TARGET_PRESSURE > 1 && atmosphere.Pressure - MAX_TARGET_PRESSURE <= 2000) power_ventilation = 1500;
