@@ -1,6 +1,6 @@
 ﻿namespace AtmosphereControl
 {
-	partial class Form1
+	partial class Simulation
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -43,6 +43,7 @@
 			this.DevicesTemperature = new System.Windows.Forms.Label();
 			this.t_Info = new System.Windows.Forms.Timer(this.components);
 			this.label2 = new System.Windows.Forms.Label();
+			this.l_ventilation = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -141,7 +142,7 @@
 			// Conditioner
 			// 
 			this.Conditioner.AutoSize = true;
-			this.Conditioner.Location = new System.Drawing.Point(150, 223);
+			this.Conditioner.Location = new System.Drawing.Point(158, 189);
 			this.Conditioner.Name = "Conditioner";
 			this.Conditioner.Size = new System.Drawing.Size(75, 16);
 			this.Conditioner.TabIndex = 9;
@@ -179,11 +180,21 @@
 			this.label2.TabIndex = 12;
 			this.label2.Text = "label2";
 			// 
-			// Form1
+			// l_ventilation
+			// 
+			this.l_ventilation.AutoSize = true;
+			this.l_ventilation.Location = new System.Drawing.Point(159, 223);
+			this.l_ventilation.Name = "l_ventilation";
+			this.l_ventilation.Size = new System.Drawing.Size(86, 20);
+			this.l_ventilation.TabIndex = 13;
+			this.l_ventilation.Text = "Ventilation";
+			// 
+			// Simulation
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Controls.Add(this.l_ventilation);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.DevicesTemperature);
 			this.Controls.Add(this.checkBox1);
@@ -196,8 +207,8 @@
 			this.Controls.Add(this.room_volume);
 			this.Controls.Add(this.amount_of_oxygen);
 			this.Controls.Add(this.label1);
-			this.Name = "Form1";
-			this.Text = "Form1";
+			this.Name = "Simulation";
+			this.Text = "Simulation";
 			this.Load += new System.EventHandler(this.Form1_Load);
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
 			this.ResumeLayout(false);
@@ -221,6 +232,7 @@
 		private System.Windows.Forms.Label DevicesTemperature;
 		private System.Windows.Forms.Timer t_Info;
 		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.Label l_ventilation;
 	}
 }
 

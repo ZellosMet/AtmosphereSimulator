@@ -11,10 +11,13 @@ namespace AtmosphereControl
 	internal class Automation
 	{
 		Atmosphere atmosphere = new Atmosphere();
-		readonly double MIN_TARGET_TEMPERATURE = 18;
-		readonly double MAX_TARGET_TEMPERATURE = 25;
+		//readonly double MIN_TARGET_TEMPERATURE = 18;
+		//readonly double MAX_TARGET_TEMPERATURE = 25;
+		readonly double MIN_TARGET_PRESSURE = 100000;
+		readonly double MAX_TARGET_PRESSURE = 103000;
 		readonly double TARGET_TEMPERATURE = 20;
 		short power_conditioner = 1;
+		int power_ventilation = 1000;
 		double target_composition;
 		bool ventilation_active;
 		bool conditioner_active;
@@ -23,13 +26,21 @@ namespace AtmosphereControl
 		{
 			get { return TARGET_TEMPERATURE; }
 		}
-		public double MinTargetTemperature
+		//public double MinTargetTemperature
+		//{
+		//	get { return MIN_TARGET_TEMPERATURE; }
+		//}
+		//public double MaxTargetTemperature
+		//{
+		//	get { return MAX_TARGET_TEMPERATURE; }
+		//}
+		public double MinTargetPressure
 		{
-			get { return MIN_TARGET_TEMPERATURE; }
+			get { return MIN_TARGET_PRESSURE; }
 		}
-		public double MaxTargetTemperature
+		public double MaxTargetPressure
 		{
-			get { return MAX_TARGET_TEMPERATURE; }
+			get { return MAX_TARGET_PRESSURE; }
 		}
 		public double TargetComposition
 		{
@@ -51,6 +62,11 @@ namespace AtmosphereControl
 			get { return power_conditioner; }
 			private set { power_conditioner = value; }
 		}
+		public int PowerVentilation
+		{
+			get { return power_ventilation; }
+			private set { power_ventilation = value; }
+		}
 
 		public Automation(Atmosphere atmosphere)
 		{
@@ -58,13 +74,13 @@ namespace AtmosphereControl
 			VentilationActive = false;
 			ConditionerActive = false;
 		}
-		public void StartVentilation()
+		public bool StartVentilation()
 		{
-			ventilation_active = true;
+			return ventilation_active = true;
 		}
-		public void StopVentilation()
+		public bool StopVentilation()
 		{
-			ventilation_active = false;
+			return ventilation_active = false;
 		}
 		public bool StartConditioner()
 		{
@@ -78,11 +94,18 @@ namespace AtmosphereControl
 		{
 			if (atmosphere.Temperature != TargetTemperature) StartConditioner();
 			else StopConditioner();
+			if (atmosphere.Pressure < MIN_TARGET_PRESSURE || atmosphere.Pressure > MAX_TARGET_PRESSURE) StartVentilation();
+			else StopVentilation();
+
 			if (conditioner_active && atmosphere.Temperature - TargetTemperature <= 5) power_conditioner = 1;
 			if (conditioner_active && atmosphere.Temperature - TargetTemperature > 5 && atmosphere.Temperature - TargetTemperature <= 10) power_conditioner = 5;
 			if (conditioner_active && atmosphere.Temperature - TargetTemperature > 10 && atmosphere.Temperature - TargetTemperature <= 15) power_conditioner = 10;
 			if (conditioner_active && atmosphere.Temperature - TargetTemperature > 15 && atmosphere.Temperature - TargetTemperature <= 20) power_conditioner = 15;
 			if (conditioner_active && atmosphere.Temperature - TargetTemperature > 20 && atmosphere.Temperature - TargetTemperature <= 25) power_conditioner = 20;
+
+			if (ventilation_active && atmosphere.Pressure - MAX_TARGET_PRESSURE <= 1000) power_ventilation = 1000;
+			if (ventilation_active && atmosphere.Pressure - MAX_TARGET_PRESSURE > 1 && atmosphere.Pressure - MAX_TARGET_PRESSURE <= 2000) power_ventilation = 1500;
+			if (ventilation_active && atmosphere.Pressure - MAX_TARGET_PRESSURE > 2 && atmosphere.Pressure - MAX_TARGET_PRESSURE <= 3000) power_ventilation = 2000;
 		}
 	}
 }

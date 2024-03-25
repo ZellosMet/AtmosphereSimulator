@@ -10,12 +10,12 @@ using System.Windows.Forms;
 
 namespace AtmosphereControl
 {
-	public partial class Form1 : Form
+	public partial class Simulation : Form
 	{
 		static Atmosphere atmosphere;
 		static Automation automation;
 		static Devices devices;
-		public Form1()
+		public Simulation()
 		{
 			InitializeComponent();
 			atmosphere = new Atmosphere();
@@ -54,15 +54,16 @@ namespace AtmosphereControl
 			automation.ScanAtmosphere();
 			if (atmosphere.Temperature < automation.TargetTemperature && automation.ConditionerActive)
 			{ 
-				atmosphere.Temperature += HeatExchange() + automation.PowerConditioner;
+				atmosphere.Temperature += Math.Abs(HeatExchange() + automation.PowerConditioner);
 				atmosphere.GasPreassureFrom();
 			}
 			if (atmosphere.Temperature > automation.TargetTemperature && automation.ConditionerActive)
 			{
-				double b = HeatExchange();
-				atmosphere.Temperature -= Math.Abs(b - automation.PowerConditioner);
+				atmosphere.Temperature -= Math.Abs(HeatExchange() - automation.PowerConditioner);
 				atmosphere.GasPreassureFrom();
-			}
+				if (atmosphere.Pressure > automation.MaxTargetPressure && automation.VentilationActive)			
+					atmosphere.Pressure -= automation.PowerVentilation;
+			}			
 
 			if (devices.DevicesActive)
 			{
@@ -89,7 +90,8 @@ namespace AtmosphereControl
 			pressure.BeginInvoke((MethodInvoker)(() => pressure.Text = "Давление\n" + Convert.ToString(atmosphere.Pressure) + " Па"));
 			numericUpDown1.BeginInvoke((MethodInvoker)(() => numericUpDown1.Value = Convert.ToInt32(atmosphere.Temperature)));			
 			Conditioner.BeginInvoke((MethodInvoker)(() => Conditioner.Text = automation.ConditionerActive ? "Кондиционер активен" : "Кондиционер не активен"));
-			//label2.BeginInvoke((MethodInvoker)(() => label2.Text = $"{HeatExchange()} {automation.PowerConditioner}"));
+			l_ventilation.BeginInvoke((MethodInvoker)(() => l_ventilation.Text = automation.VentilationActive ? "Вентеляция активена" : "Вентеляция не активена"));
+			label2.BeginInvoke((MethodInvoker)(() => label2.Text = $"{automation.VentilationActive} {automation.PowerVentilation}"));
 		}
 	}
 }
