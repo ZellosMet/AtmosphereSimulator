@@ -11,8 +11,6 @@ namespace AtmosphereControl
 	internal class Automation
 	{
 		Atmosphere atmosphere = new Atmosphere();
-		//readonly double MIN_TARGET_TEMPERATURE = 18;
-		//readonly double MAX_TARGET_TEMPERATURE = 25;
 		readonly double MIN_TARGET_PRESSURE = 100000;
 		readonly double MAX_TARGET_PRESSURE = 103000;
 		readonly double TARGET_TEMPERATURE = 20;

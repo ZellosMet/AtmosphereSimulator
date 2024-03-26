@@ -12,18 +12,17 @@ namespace AtmosphereControl
 {
 	public partial class Simulation : Form
 	{
-		List<Astronaut> astronauts_list;
 		static Atmosphere atmosphere;
 		static Automation automation;
 		static Devices devices;
+		static Astronauts astronauts;
 		public Simulation()
 		{
 			InitializeComponent();
 			atmosphere = new Atmosphere();
 			automation = new Automation(atmosphere);
 			devices = new Devices(atmosphere);
-			astronauts_list = new List<Astronaut>();
-			l_NumberOfAstronauts.Text = $"Всего космонавтов: {astronauts_list.Count}";
+			astronauts = new Astronauts(atmosphere);
 		}
 		double HeatExchange()
 		{
@@ -41,6 +40,7 @@ namespace AtmosphereControl
 			room_volume.Text = "Объём помещения\n" + Convert.ToString(atmosphere.RoomVolume) + " м3";
 			Conditioner.Text = "Кондиционер не активен";
 			DevicesTemperature.Text = "Температура устройств\n" + Convert.ToString(devices.CurrentTemperature) + " С";
+			l_NumberOfAstronauts.Text = $"Всего космонавтов: {astronauts.GetCountAstronauts}";
 			timer1.Start();
 			t_Info.Start();
 		}
@@ -54,6 +54,11 @@ namespace AtmosphereControl
 
 		private void timer1_Tick(object sender, EventArgs e)
 		{
+			atmosphere.AmountOfOxygen -= astronauts.ConsumptionOxygen * astronauts.GetCountAstronauts;
+			atmosphere.AmountOfNitrogen -= astronauts.ConsumptionNitrogen * astronauts.GetCountAstronauts;
+			atmosphere.AmountOfCarbonDiaxide = (atmosphere.AmountOfCarbonDiaxide - astronauts.ConsumptionCarbonDiaxide * astronauts.GetCountAstronauts) + Astronauts.AtmosphereConsumption();
+			atmosphere.GasPreassureFrom();
+
 			automation.ScanAtmosphere();
 			if (atmosphere.Temperature < automation.TargetTemperature && automation.ConditionerActive)
 			{ 
@@ -64,9 +69,18 @@ namespace AtmosphereControl
 			{
 				atmosphere.Temperature -= Math.Abs(HeatExchange() - automation.PowerConditioner);
 				atmosphere.GasPreassureFrom();
-				if (atmosphere.Pressure > automation.MaxTargetPressure && automation.VentilationActive)			
-					atmosphere.Pressure -= automation.PowerVentilation;
-			}			
+			}
+
+			if (atmosphere.Pressure > automation.MaxTargetPressure && automation.VentilationActive)
+			{ 
+				atmosphere.Pressure -= automation.PowerVentilation;
+				atmosphere.GasPreassureFrom();
+			}
+			if (atmosphere.Pressure < automation.MinTargetPressure && automation.VentilationActive)
+			{ 
+				atmosphere.Pressure += automation.PowerVentilation;
+				atmosphere.GasPreassureFrom();
+			}
 
 			if (devices.DevicesActive)
 			{
@@ -88,6 +102,9 @@ namespace AtmosphereControl
 		}
 		void info()
 		{
+			amount_of_oxygen.BeginInvoke((MethodInvoker)(() => amount_of_oxygen.Text = "Количество кислорода\n" + Math.Round(atmosphere.AmountOfOxygen, 2) + " моль"));
+			amount_of_nitrogen.BeginInvoke((MethodInvoker)(() => amount_of_nitrogen.Text = "Количество азота\n" + Math.Round(atmosphere.AmountOfNitrogen, 2) + " моль"));
+			amount_of_carbon_diaxide.BeginInvoke((MethodInvoker)(() => amount_of_carbon_diaxide.Text = "Количество СО2\n" + Math.Round(atmosphere.AmountOfCarbonDiaxide, 2) + " моль"));
 			temperature.BeginInvoke((MethodInvoker)(() => temperature.Text  = "Температура\n" + Convert.ToString(atmosphere.Temperature) + " С"));
 			DevicesTemperature.BeginInvoke((MethodInvoker)(() => DevicesTemperature.Text = "Температура устройств\n" + Convert.ToString(devices.CurrentTemperature) + " С"));
 			pressure.BeginInvoke((MethodInvoker)(() => pressure.Text = "Давление\n" + Convert.ToString(atmosphere.Pressure) + " Па"));
@@ -100,15 +117,14 @@ namespace AtmosphereControl
 
 		private void b_AddAstronaut_Click(object sender, EventArgs e)
 		{
-			Astronaut astronaut = new Astronaut(atmosphere);
-			astronauts_list.Add(astronaut);
-			l_NumberOfAstronauts.Text = $"Всего космонавтов: {astronauts_list.Count}";
+			astronauts.AddAstronauts();
+			l_NumberOfAstronauts.Text = $"Всего космонавтов: {astronauts.GetCountAstronauts}";
 		}
 
 		private void b_RemoveAstronaut_Click(object sender, EventArgs e)
 		{
-			if(astronauts_list.Count > 0 )astronauts_list.RemoveAt(0);
-			l_NumberOfAstronauts.Text = $"Всего космонавтов: {astronauts_list.Count}";
+			astronauts.RemoveAstronauts();
+			l_NumberOfAstronauts.Text = $"Всего космонавтов: {astronauts.GetCountAstronauts}";
 		}
 	}
 }
