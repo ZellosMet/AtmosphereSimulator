@@ -12,6 +12,7 @@ namespace AtmosphereControl
 {
 	public partial class Simulation : Form
 	{
+		List<Astronaut> astronauts_list;
 		static Atmosphere atmosphere;
 		static Automation automation;
 		static Devices devices;
@@ -21,6 +22,8 @@ namespace AtmosphereControl
 			atmosphere = new Atmosphere();
 			automation = new Automation(atmosphere);
 			devices = new Devices(atmosphere);
+			astronauts_list = new List<Astronaut>();
+			l_NumberOfAstronauts.Text = $"Всего космонавтов: {astronauts_list.Count}";
 		}
 		double HeatExchange()
 		{
@@ -91,8 +94,21 @@ namespace AtmosphereControl
 			numericUpDown1.BeginInvoke((MethodInvoker)(() => numericUpDown1.Value = Convert.ToInt32(atmosphere.Temperature)));			
 			Conditioner.BeginInvoke((MethodInvoker)(() => Conditioner.Text = automation.ConditionerActive ? "Кондиционер активен" : "Кондиционер не активен"));
 			l_ventilation.BeginInvoke((MethodInvoker)(() => l_ventilation.Text = automation.VentilationActive ? "Вентеляция активена" : "Вентеляция не активена"));
-			label2.BeginInvoke((MethodInvoker)(() => label2.Text = $"{automation.ConditionerActive} {automation.PowerConditioner}"));
-			label2.BeginInvoke((MethodInvoker)(() => label2.Text += $" {automation.VentilationActive} {automation.PowerVentilation}"));
+			//label2.BeginInvoke((MethodInvoker)(() => label2.Text = $"{automation.ConditionerActive} {automation.PowerConditioner}"));
+			//label2.BeginInvoke((MethodInvoker)(() => label2.Text += $" {automation.VentilationActive} {automation.PowerVentilation}"));
+		}
+
+		private void b_AddAstronaut_Click(object sender, EventArgs e)
+		{
+			Astronaut astronaut = new Astronaut(atmosphere);
+			astronauts_list.Add(astronaut);
+			l_NumberOfAstronauts.Text = $"Всего космонавтов: {astronauts_list.Count}";
+		}
+
+		private void b_RemoveAstronaut_Click(object sender, EventArgs e)
+		{
+			if(astronauts_list.Count > 0 )astronauts_list.RemoveAt(0);
+			l_NumberOfAstronauts.Text = $"Всего космонавтов: {astronauts_list.Count}";
 		}
 	}
 }

@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Astronaut.cs" />
     <Compile Include="Atmosphere.cs" />
     <Compile Include="Automation.cs" />
     <Compile Include="Divices.cs" />

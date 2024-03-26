@@ -44,6 +44,9 @@
 			this.t_Info = new System.Windows.Forms.Timer(this.components);
 			this.label2 = new System.Windows.Forms.Label();
 			this.l_ventilation = new System.Windows.Forms.Label();
+			this.b_AddAstronaut = new System.Windows.Forms.Button();
+			this.l_NumberOfAstronauts = new System.Windows.Forms.Label();
+			this.b_RemoveAstronaut = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -189,11 +192,43 @@
 			this.l_ventilation.TabIndex = 13;
 			this.l_ventilation.Text = "Ventilation";
 			// 
+			// b_AddAstronaut
+			// 
+			this.b_AddAstronaut.Location = new System.Drawing.Point(563, 59);
+			this.b_AddAstronaut.Name = "b_AddAstronaut";
+			this.b_AddAstronaut.Size = new System.Drawing.Size(134, 23);
+			this.b_AddAstronaut.TabIndex = 14;
+			this.b_AddAstronaut.Text = "Add Astronaut";
+			this.b_AddAstronaut.UseVisualStyleBackColor = true;
+			this.b_AddAstronaut.Click += new System.EventHandler(this.b_AddAstronaut_Click);
+			// 
+			// l_NumberOfAstronauts
+			// 
+			this.l_NumberOfAstronauts.AutoSize = true;
+			this.l_NumberOfAstronauts.Location = new System.Drawing.Point(563, 143);
+			this.l_NumberOfAstronauts.Name = "l_NumberOfAstronauts";
+			this.l_NumberOfAstronauts.Size = new System.Drawing.Size(134, 16);
+			this.l_NumberOfAstronauts.TabIndex = 15;
+			this.l_NumberOfAstronauts.Text = "Number of astronauts";
+			// 
+			// b_RemoveAstronaut
+			// 
+			this.b_RemoveAstronaut.Location = new System.Drawing.Point(563, 99);
+			this.b_RemoveAstronaut.Name = "b_RemoveAstronaut";
+			this.b_RemoveAstronaut.Size = new System.Drawing.Size(134, 23);
+			this.b_RemoveAstronaut.TabIndex = 16;
+			this.b_RemoveAstronaut.Text = "Remove Astronaut";
+			this.b_RemoveAstronaut.UseVisualStyleBackColor = true;
+			this.b_RemoveAstronaut.Click += new System.EventHandler(this.b_RemoveAstronaut_Click);
+			// 
 			// Simulation
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.Controls.Add(this.b_RemoveAstronaut);
+			this.Controls.Add(this.l_NumberOfAstronauts);
+			this.Controls.Add(this.b_AddAstronaut);
 			this.Controls.Add(this.l_ventilation);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.DevicesTemperature);
@@ -233,6 +268,9 @@
 		private System.Windows.Forms.Timer t_Info;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label l_ventilation;
+		private System.Windows.Forms.Button b_AddAstronaut;
+		private System.Windows.Forms.Label l_NumberOfAstronauts;
+		private System.Windows.Forms.Button b_RemoveAstronaut;
 	}
 }
 
