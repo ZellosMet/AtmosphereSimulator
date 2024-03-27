@@ -15,6 +15,7 @@ namespace AtmosphereControl
 		double amount_of_oxygen; //количество кислорода, моль
 		double amount_of_nitrogen; //количество азота, моль
 		double amount_of_carbon_diaxide; // количество СО2, моль
+		double all_matter;
 		double room_volume; // объём помещения, м3
 		double temperature; // температура атмосферы, К
 		double pressure; // давение атмосферы, Па
@@ -34,6 +35,19 @@ namespace AtmosphereControl
 			get { return amount_of_carbon_diaxide; }
 			set { amount_of_carbon_diaxide = value; }
 		}
+		public double GetOxygenInPercent
+		{
+			get { return amount_of_oxygen*100/all_matter; }
+		}
+		public double GetNitrogenInPercent
+		{
+			get { return amount_of_nitrogen * 100 / all_matter; }
+		}
+		public double GetCarbonDiaxideInPercent
+		{
+			get { return amount_of_carbon_diaxide * 100 / all_matter; }
+		}
+
 		public double RoomVolume
 		{
 			get { return room_volume; }
@@ -57,6 +71,7 @@ namespace AtmosphereControl
 			AmountOfCarbonDiaxide = amount_of_carbon_diaxide;
 			Temperature = temperature;
 			RoomVolume = room_volume;
+			all_matter = AmountOfOxygen + AmountOfNitrogen + AmountOfCarbonDiaxide;
 			Pressure = Math.Round((((AmountOfOxygen + AmountOfNitrogen + AmountOfCarbonDiaxide) * R * (Temperature + KELVIN)) / RoomVolume), 2);
 		}
 		public void GasPreassureFrom()
