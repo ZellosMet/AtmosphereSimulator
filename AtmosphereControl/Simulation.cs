@@ -5,13 +5,17 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace AtmosphereControl
 {
 	public partial class Simulation : Form
 	{
+		List<double> chart_temperature_list = new List<double>();
+		Thread draw_temperature;
 		static Atmosphere atmosphere;
 		static Automation automation;
 		static Devices devices;
@@ -32,6 +36,9 @@ namespace AtmosphereControl
 
 		public void Form1_Load(object sender, EventArgs e)
 		{
+			FillList();
+			cht_MiniTemperature.ChartAreas[0].AxisX.Minimum = 0;
+			cht_MiniTemperature.ChartAreas[0].AxisY.Maximum = 60;
 			amount_of_oxygen.Text = "Количество кислорода\n" + Convert.ToString(atmosphere.AmountOfOxygen) + " моль";
 			amount_of_nitrogen.Text = "Количество азота\n" + Convert.ToString(atmosphere.AmountOfNitrogen) + " моль";
 			amount_of_carbon_diaxide.Text = "Количество СО2\n" + Convert.ToString(atmosphere.AmountOfCarbonDiaxide) + " моль";
@@ -46,7 +53,6 @@ namespace AtmosphereControl
 		}
 		private void numericUpDown1_ValueChanged(object sender, EventArgs e)
 		{
-			atmosphere.Temperature = Convert.ToDouble(numericUpDown1.Value);
 			atmosphere.GasPreassureFrom();
 			temperature.Text = "Температура\n" + Convert.ToString(atmosphere.Temperature) + " С";
 			pressure.Text = "Давление\n" + Convert.ToString(atmosphere.Pressure) + " Па";
@@ -107,12 +113,31 @@ namespace AtmosphereControl
 			amount_of_carbon_diaxide.BeginInvoke((MethodInvoker)(() => amount_of_carbon_diaxide.Text = "Количество СО2\n" + Math.Round(atmosphere.AmountOfCarbonDiaxide, 2) + " моль"));
 			temperature.BeginInvoke((MethodInvoker)(() => temperature.Text  = "Температура\n" + Convert.ToString(atmosphere.Temperature) + " С"));
 			DevicesTemperature.BeginInvoke((MethodInvoker)(() => DevicesTemperature.Text = "Температура устройств\n" + Convert.ToString(devices.CurrentTemperature) + " С"));
-			pressure.BeginInvoke((MethodInvoker)(() => pressure.Text = "Давление\n" + Convert.ToString(atmosphere.Pressure) + " Па"));
-			numericUpDown1.BeginInvoke((MethodInvoker)(() => numericUpDown1.Value = Convert.ToInt32(atmosphere.Temperature)));			
+			pressure.BeginInvoke((MethodInvoker)(() => pressure.Text = "Давление\n" + Convert.ToString(atmosphere.Pressure) + " Па"));			
 			Conditioner.BeginInvoke((MethodInvoker)(() => Conditioner.Text = automation.ConditionerActive ? "Кондиционер активен" : "Кондиционер не активен"));
 			l_ventilation.BeginInvoke((MethodInvoker)(() => l_ventilation.Text = automation.VentilationActive ? "Вентеляция активена" : "Вентеляция не активена"));
-			//label2.BeginInvoke((MethodInvoker)(() => label2.Text = $"{automation.ConditionerActive} {automation.PowerConditioner}"));
-			//label2.BeginInvoke((MethodInvoker)(() => label2.Text += $" {automation.VentilationActive} {automation.PowerVentilation}"));
+
+			chart_temperature_list.RemoveAt(0);
+			chart_temperature_list.Add(atmosphere.Temperature);
+
+			cht_MiniTemperature.BeginInvoke((MethodInvoker)delegate{ DrawChart(); });
+			//draw_temperature = new Thread(new ThreadStart(DrawChart));
+			//draw_temperature.Start();
+		}
+		void FillList()
+		{
+			for (int i = 0; i < 60; i++)
+				chart_temperature_list.Add(0);
+		}
+		void DrawChart()
+		{
+			cht_MiniTemperature.Series[0].Points.Clear();
+			int x = 0;
+			while (x <= chart_temperature_list.Count - 1)
+			{ 
+				cht_MiniTemperature.Series[0].Points.AddXY(x + 1, chart_temperature_list[x]);
+				x++;
+			}
 		}
 
 		private void b_AddAstronaut_Click(object sender, EventArgs e)
