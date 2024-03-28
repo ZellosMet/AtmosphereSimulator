@@ -84,7 +84,7 @@ namespace AtmosphereControl
 		{
 			if (atmosphere.Temperature != TargetTemperature) StartConditioner();
 			else StopConditioner();
-			if ((atmosphere.Pressure < MIN_TARGET_PRESSURE || atmosphere.Pressure > MAX_TARGET_PRESSURE) || (atmosphere.GetOxygenInPercent > TargetCarbonDiaxide)) StartVentilation();
+			if ((atmosphere.Pressure < MIN_TARGET_PRESSURE || atmosphere.Pressure > MAX_TARGET_PRESSURE) || (atmosphere.GetCarbonDiaxideInPercent > TargetCarbonDiaxide)) StartVentilation();
 			else StopVentilation();
 
 			if (conditioner_active && atmosphere.Temperature - TargetTemperature <= 5) power_conditioner = 1;

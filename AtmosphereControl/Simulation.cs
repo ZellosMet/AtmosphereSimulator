@@ -23,6 +23,12 @@ namespace AtmosphereControl
 		double min_T;
 		double max_P;
 		double min_P;
+		double max_O2;
+		double min_O2;
+		double max_N2;
+		double min_N2;
+		double max_CO2;
+		double min_CO2;
 		byte select_chart = 0;
 		static Atmosphere atmosphere;
 		static Automation automation;
@@ -135,7 +141,7 @@ namespace AtmosphereControl
 			amount_of_carbon_diaxide.BeginInvoke((MethodInvoker)(() => amount_of_carbon_diaxide.Text = "СО2 - " + Math.Round(atmosphere.GetCarbonDiaxideInPercent, 2) + " %"));
 			temperature.BeginInvoke((MethodInvoker)(() => temperature.Text  = "Температура " + Math.Round(atmosphere.Temperature, 2) + " С"));
 			DevicesTemperature.BeginInvoke((MethodInvoker)(() => DevicesTemperature.Text = "Температура устройств " + Math.Round(devices.CurrentTemperature, 2) + " С"));
-			pressure.BeginInvoke((MethodInvoker)(() => pressure.Text = "Давление " + Convert.ToString(atmosphere.Pressure/1000) + " КПа"));			
+			pressure.BeginInvoke((MethodInvoker)(() => pressure.Text = "Давление " + Math.Round(atmosphere.Pressure/1000, 2) + " КПа"));			
 			Conditioner.BeginInvoke((MethodInvoker)(() => Conditioner.Text = automation.ConditionerActive ? "Кондиционер активен" : "Кондиционер не активен"));
 			l_ventilation.BeginInvoke((MethodInvoker)(() => l_ventilation.Text = automation.VentilationActive ? "Вентеляция активена" : "Вентеляция не активена"));
 
@@ -162,7 +168,7 @@ namespace AtmosphereControl
 						cht_FullChart.BeginInvoke((MethodInvoker)delegate { DrawChart(cht_FullChart, chart_temperature_list); });
 						max_T = max_T > chart_temperature_list.Max()? max_T : chart_temperature_list.Max();
 						min_T = min_T > chart_temperature_list.Min()? min_T : chart_temperature_list.Min();
-						l_Info.BeginInvoke((MethodInvoker)(() => l_Info.Text = $"Температура\n   Максимальная: {max_T}\n   Минимальная: {min_T}\n   Средняя {Math.Round(chart_temperature_list.Average(), 2)}"));
+						l_Info.BeginInvoke((MethodInvoker)(() => l_Info.Text = $"Температура\n   Максимальная: {Math.Round(max_T,2)}\n   Минимальная: {Math.Round(min_T,2)}\n   Средняя {Math.Round(chart_temperature_list.Average(), 2)}"));
 					}
 				break;
 				case 1:
@@ -170,12 +176,23 @@ namespace AtmosphereControl
 						cht_FullChart.BeginInvoke((MethodInvoker)delegate { DrawChart(cht_FullChart, chart_pressure_list); }); 
 						max_P = max_P > chart_pressure_list.Max() ? max_P : chart_pressure_list.Max();
 						min_P = min_P > chart_pressure_list.Min() ? min_P : chart_pressure_list.Min();
-						l_Info.BeginInvoke((MethodInvoker)(() => l_Info.Text = $"Давление\n   Максимальное: {max_P}\n   Минимальное: {min_P}\n   Среднее {Math.Round(chart_pressure_list.Average(), 2)}"));
+						l_Info.BeginInvoke((MethodInvoker)(() => l_Info.Text = $"Давление\n   Максимальное: {Math.Round(max_P, 2)}\n   Минимальное: {Math.Round(min_P, 2)}\n   Среднее {Math.Round(chart_pressure_list.Average(), 2)}"));
 					}
 				break;
 				case 2:
 					{ 
 						cht_FullChart.BeginInvoke((MethodInvoker)delegate { DrawChart(cht_FullChart, chart_oxygen_list, chart_nitrogen_list, chart_carbon_diaxide_list); });
+						max_O2 = max_O2 > chart_oxygen_list.Max() ? max_O2 : chart_oxygen_list.Max();
+						min_O2 = min_O2 > chart_oxygen_list.Min() ? min_O2 : chart_oxygen_list.Min();
+						max_N2 = max_N2 > chart_nitrogen_list.Max() ? max_N2 : chart_nitrogen_list.Max();
+						min_N2 = min_N2 > chart_nitrogen_list.Min() ? min_N2 : chart_nitrogen_list.Min();
+						max_CO2 = max_CO2 > chart_carbon_diaxide_list.Max() ? max_CO2 : chart_carbon_diaxide_list.Max();
+						min_CO2 = min_CO2 > chart_carbon_diaxide_list.Min() ? min_CO2 : chart_carbon_diaxide_list.Min();
+						l_Info.BeginInvoke((MethodInvoker)(() => l_Info.Text = $@"Состав атмосферы
+						   Максимальное O2: {Math.Round(max_O2, 2)}   Максимальное N2: {Math.Round(max_N2, 2)}   Максимальное СО2 {Math.Round(max_CO2, 2)}
+						   Минимальное O2: {Math.Round(min_O2, 2)}   Минимально N2: {Math.Round(min_N2, 2)}   Минимально СО2 {Math.Round(min_CO2, 2)}
+						   Среднее O2: {Math.Round(chart_oxygen_list.Average(), 2)}   Среднее N2: {Math.Round(chart_nitrogen_list.Average(), 2)}   Среднее СО2 {Math.Round(chart_carbon_diaxide_list.Average(), 2)}
+						"));
 					}
 				break;
 			}			
