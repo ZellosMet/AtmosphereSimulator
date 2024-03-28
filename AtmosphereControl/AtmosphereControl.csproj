@@ -50,6 +50,12 @@
     <Compile Include="Astronauts.cs" />
     <Compile Include="Atmosphere.cs" />
     <Compile Include="Automation.cs" />
+    <Compile Include="Create Atmosphere.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Create Atmosphere.Designer.cs">
+      <DependentUpon>Create Atmosphere.cs</DependentUpon>
+    </Compile>
     <Compile Include="Divices.cs" />
     <Compile Include="Simulation.cs">
       <SubType>Form</SubType>
@@ -59,6 +65,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Create Atmosphere.resx">
+      <DependentUpon>Create Atmosphere.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Simulation.resx">
       <DependentUpon>Simulation.cs</DependentUpon>
     </EmbeddedResource>

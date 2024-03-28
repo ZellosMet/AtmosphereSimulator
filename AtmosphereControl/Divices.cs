@@ -8,18 +8,15 @@ namespace AtmosphereControl
 {
 	internal class Devices
 	{
-		readonly double WORKING_TEMPERATURE = 45;
-		double device_surface_area = 6; // Условно куб 1х1х1м 
-		double current_temperature;
-		bool devices_active;
-		public double WorkingTemperature
-		{
-			get { return WORKING_TEMPERATURE; }
-		}
+		readonly double WORKING_TEMPERATURE = 45; //Максимальная рабочая температура устройств
+		double device_surface_area = 6; // Площадь поверхности устройст(условно куб 1х1х1м) 
+		double current_temperature; //Текущая температура устройств
+		bool devices_active; //Состояние устройств
+		//Список свойств
 		public double DeviceSurfaceArea
 		{
 			get { return device_surface_area; }
-			set { device_surface_area = value; }
+			private set { device_surface_area = value; }
 		}
 		public double CurrentTemperature
 		{
@@ -33,20 +30,24 @@ namespace AtmosphereControl
 		}
 		public Devices(Atmosphere atmosphere)
 		{
-			CurrentTemperature = atmosphere.Temperature;
-			DevicesActive = false;
+			this.current_temperature = atmosphere.Temperature;
+			this.devices_active = false;
 		}
+		//метод запуска устройств
 		public void StartDevices()
 		{
 			DevicesActive = true;
 		}
+		//Метод остановки устройств
 		public void StopDevices()
 		{
 			DevicesActive = false;
 		}
+		//Метод расчёта текущей температуры устройств
 		public void OverclokingDevices()
 		{
-			if (DevicesActive && CurrentTemperature < WORKING_TEMPERATURE) CurrentTemperature += 1;
+			if (DevicesActive && CurrentTemperature < WORKING_TEMPERATURE) 
+				CurrentTemperature += 1;
 		}
 	}
 }

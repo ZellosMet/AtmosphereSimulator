@@ -8,18 +8,17 @@ namespace AtmosphereControl
 {
 	internal class Atmosphere
 	{
-		//pV = m/M* RT
-		readonly double HEAT_TRANSFER_COEFFICIENT = 0.0259;
 		readonly double KELVIN = 273; //0 по Кельвину
-		readonly double R = 8.3145;  //универсальная  газовая постоянная
-		double amount_of_oxygen; //количество кислорода, моль
-		double amount_of_nitrogen; //количество азота, моль
-		double amount_of_carbon_diaxide; // количество СО2, моль
-		double all_matter;
-		double room_volume; // объём помещения, м3
-		double temperature; // температура атмосферы, К
-		double pressure; // давение атмосферы, Па
+		readonly double R = 8.3145;  //Универсальная газовая постоянная
+		double amount_of_oxygen; //Количество кислорода(моль)
+		double amount_of_nitrogen; //Количество азота(моль)
+		double amount_of_carbon_diaxide; //Количество СО2(моль)
+		double all_matter;	//Общее количество вещества(моль)
+		double room_volume; //Объём помещения(м3)
+		double temperature; //Температура атмосферы(К)
+		double pressure; //Давение атмосферы(Па)
 
+		//Список свойст
 		public double AmountOfOxygen 
 		{
 			get { return amount_of_oxygen; }
@@ -39,12 +38,7 @@ namespace AtmosphereControl
 		public double GetNitrogenInPercent { get { return amount_of_nitrogen * 100 / all_matter; } }
 		public double GetCarbonDiaxideInPercent { get { return amount_of_carbon_diaxide * 100 / all_matter; } }
 		public double GetAllMatter { get { return AmountOfOxygen + AmountOfNitrogen + AmountOfCarbonDiaxide; } }
-
-		public double RoomVolume
-		{
-			get { return room_volume; }
-			set { room_volume = value; }
-		}
+		public double RoomVolume { get { return room_volume; } }
 		public double Temperature
 		{
 			get { return temperature; }
@@ -58,17 +52,17 @@ namespace AtmosphereControl
 
 		public Atmosphere(double amount_of_oxygen = 157.22, double amount_of_nitrogen = 576.5, double amount_of_carbon_diaxide = 14.98, double temperature = 20, double room_volume = 18)
 		{
-			AmountOfOxygen = amount_of_oxygen;
-			AmountOfNitrogen = amount_of_nitrogen;
-			AmountOfCarbonDiaxide = amount_of_carbon_diaxide;
-			Temperature = temperature;
-			RoomVolume = room_volume;
-			all_matter = AmountOfOxygen + AmountOfNitrogen + AmountOfCarbonDiaxide;
-			Pressure = Math.Round((((AmountOfOxygen + AmountOfNitrogen + AmountOfCarbonDiaxide) * R * (Temperature + KELVIN)) / RoomVolume), 2);
+			this.amount_of_oxygen = amount_of_oxygen;
+			this.amount_of_nitrogen = amount_of_nitrogen;
+			this.amount_of_carbon_diaxide = amount_of_carbon_diaxide;
+			this.temperature = temperature;
+			this.room_volume = room_volume;
+			this.all_matter = AmountOfOxygen + AmountOfNitrogen + AmountOfCarbonDiaxide;
+			this.pressure = Math.Round((((AmountOfOxygen + AmountOfNitrogen + AmountOfCarbonDiaxide) * R * (Temperature + KELVIN)) / RoomVolume), 2);
 		}
+		//Метод расчёта давления
 		public void GasPreassureFrom()
-		{
-			//p = (m/M*RT)/V
+		{ 
 			Pressure = Math.Round((((AmountOfOxygen + AmountOfNitrogen + AmountOfCarbonDiaxide) * R * (Temperature + KELVIN)) / RoomVolume), 2);
 		}
 	}
