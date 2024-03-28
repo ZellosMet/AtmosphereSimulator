@@ -35,18 +35,10 @@ namespace AtmosphereControl
 			get { return amount_of_carbon_diaxide; }
 			set { amount_of_carbon_diaxide = value; }
 		}
-		public double GetOxygenInPercent
-		{
-			get { return amount_of_oxygen*100/all_matter; }
-		}
-		public double GetNitrogenInPercent
-		{
-			get { return amount_of_nitrogen * 100 / all_matter; }
-		}
-		public double GetCarbonDiaxideInPercent
-		{
-			get { return amount_of_carbon_diaxide * 100 / all_matter; }
-		}
+		public double GetOxygenInPercent { get { return amount_of_oxygen*100/all_matter; } }
+		public double GetNitrogenInPercent { get { return amount_of_nitrogen * 100 / all_matter; } }
+		public double GetCarbonDiaxideInPercent { get { return amount_of_carbon_diaxide * 100 / all_matter; } }
+		public double GetAllMatter { get { return AmountOfOxygen + AmountOfNitrogen + AmountOfCarbonDiaxide; } }
 
 		public double RoomVolume
 		{

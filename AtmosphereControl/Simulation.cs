@@ -107,6 +107,9 @@ namespace AtmosphereControl
 				atmosphere.GasPreassureFrom();
 			}
 
+			if (atmosphere.GetCarbonDiaxideInPercent > automation.TargetCarbonDiaxide && automation.VentilationActive)
+				automation.AtmosphereFlow();
+
 			if (devices.DevicesActive)
 			{
 				devices.OverclokingDevices();
@@ -159,7 +162,7 @@ namespace AtmosphereControl
 						cht_FullChart.BeginInvoke((MethodInvoker)delegate { DrawChart(cht_FullChart, chart_temperature_list); });
 						max_T = max_T > chart_temperature_list.Max()? max_T : chart_temperature_list.Max();
 						min_T = min_T > chart_temperature_list.Min()? min_T : chart_temperature_list.Min();
-						l_Info.Text = $"Температура\n   Максимальная: {max_T}\n   Минимальная: {min_T}\n   Средняя {Math.Round(chart_temperature_list.Average(), 2)}";
+						l_Info.BeginInvoke((MethodInvoker)(() => l_Info.Text = $"Температура\n   Максимальная: {max_T}\n   Минимальная: {min_T}\n   Средняя {Math.Round(chart_temperature_list.Average(), 2)}"));
 					}
 				break;
 				case 1:
@@ -167,7 +170,7 @@ namespace AtmosphereControl
 						cht_FullChart.BeginInvoke((MethodInvoker)delegate { DrawChart(cht_FullChart, chart_pressure_list); }); 
 						max_P = max_P > chart_pressure_list.Max() ? max_P : chart_pressure_list.Max();
 						min_P = min_P > chart_pressure_list.Min() ? min_P : chart_pressure_list.Min();
-						l_Info.Text = $"Давление\n   Максимальное: {max_P}\n   Минимальное: {min_P}\n   Среднее {Math.Round(chart_pressure_list.Average(), 2)}";
+						l_Info.BeginInvoke((MethodInvoker)(() => l_Info.Text = $"Давление\n   Максимальное: {max_P}\n   Минимальное: {min_P}\n   Среднее {Math.Round(chart_pressure_list.Average(), 2)}"));
 					}
 				break;
 				case 2:

@@ -14,16 +14,13 @@ namespace AtmosphereControl
 		readonly double MIN_TARGET_PRESSURE = 100000;
 		readonly double MAX_TARGET_PRESSURE = 103000;
 		readonly double TARGET_TEMPERATURE = 20;
+		readonly double TARGET_CARBON_DIAXIDE = 2;
 		short power_conditioner = 1;
 		int power_ventilation = 1000;
 		double target_composition;
 		bool ventilation_active;
 		bool conditioner_active;
 
-		public double TargetTemperature
-		{
-			get { return TARGET_TEMPERATURE; }
-		}
 		//public double MinTargetTemperature
 		//{
 		//	get { return MIN_TARGET_TEMPERATURE; }
@@ -32,14 +29,9 @@ namespace AtmosphereControl
 		//{
 		//	get { return MAX_TARGET_TEMPERATURE; }
 		//}
-		public double MinTargetPressure
-		{
-			get { return MIN_TARGET_PRESSURE; }
-		}
-		public double MaxTargetPressure
-		{
-			get { return MAX_TARGET_PRESSURE; }
-		}
+		public double TargetTemperature{ get { return TARGET_TEMPERATURE; }	}
+		public double MinTargetPressure	{ get { return MIN_TARGET_PRESSURE; } }
+		public double MaxTargetPressure	{ get { return MAX_TARGET_PRESSURE; } }
 		public double TargetComposition
 		{
 			get { return target_composition; }
@@ -65,7 +57,7 @@ namespace AtmosphereControl
 			get { return power_ventilation; }
 			private set { power_ventilation = value; }
 		}
-
+		public double TargetCarbonDiaxide { get { return TARGET_CARBON_DIAXIDE; } }
 		public Automation(Atmosphere atmosphere)
 		{
 			this.atmosphere = atmosphere;
@@ -92,7 +84,7 @@ namespace AtmosphereControl
 		{
 			if (atmosphere.Temperature != TargetTemperature) StartConditioner();
 			else StopConditioner();
-			if (atmosphere.Pressure < MIN_TARGET_PRESSURE || atmosphere.Pressure > MAX_TARGET_PRESSURE) StartVentilation();
+			if ((atmosphere.Pressure < MIN_TARGET_PRESSURE || atmosphere.Pressure > MAX_TARGET_PRESSURE) || (atmosphere.GetOxygenInPercent > TargetCarbonDiaxide)) StartVentilation();
 			else StopVentilation();
 
 			if (conditioner_active && atmosphere.Temperature - TargetTemperature <= 5) power_conditioner = 1;
@@ -101,8 +93,19 @@ namespace AtmosphereControl
 			//if (conditioner_active && atmosphere.Temperature - TargetTemperature > 15 && atmosphere.Temperature - TargetTemperature <= 20) power_conditioner = 20;
 
 			if (ventilation_active && atmosphere.Pressure - MAX_TARGET_PRESSURE <= 1000) power_ventilation = 1000;
-			if (ventilation_active && atmosphere.Pressure - MAX_TARGET_PRESSURE > 1 && atmosphere.Pressure - MAX_TARGET_PRESSURE <= 2000) power_ventilation = 1500;
-			if (ventilation_active && atmosphere.Pressure - MAX_TARGET_PRESSURE > 2 && atmosphere.Pressure - MAX_TARGET_PRESSURE <= 3000) power_ventilation = 2000;
+			if (ventilation_active && atmosphere.Pressure - MAX_TARGET_PRESSURE > 1 && atmosphere.Pressure - MAX_TARGET_PRESSURE <= 2000) power_ventilation = 2000;
+			if (ventilation_active && atmosphere.Pressure - MAX_TARGET_PRESSURE > 2 && atmosphere.Pressure - MAX_TARGET_PRESSURE <= 3000) power_ventilation = 3000;
+		}
+		public void AtmosphereFlow()
+		{
+			double amount_matter_in_one_part = atmosphere.GetAllMatter / atmosphere.RoomVolume;
+			double current_amount_oxygen = atmosphere.GetOxygenInPercent * amount_matter_in_one_part / 100;
+			double current_amount_nitrogen = atmosphere.GetNitrogenInPercent * amount_matter_in_one_part / 100;
+			double current_amount_carbon_diaxide = atmosphere.GetCarbonDiaxideInPercent * amount_matter_in_one_part / 100;
+
+			atmosphere.AmountOfOxygen = atmosphere.AmountOfOxygen + 8.74 - current_amount_oxygen;
+			atmosphere.AmountOfNitrogen = atmosphere.AmountOfNitrogen + 32 - current_amount_nitrogen;
+			atmosphere.AmountOfCarbonDiaxide = atmosphere.AmountOfCarbonDiaxide + 0.86 - current_amount_carbon_diaxide*1.5;
 		}
 	}
 }
