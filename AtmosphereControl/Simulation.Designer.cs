@@ -29,18 +29,18 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-			System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
-			System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
-			System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
-			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-			System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
-			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-			System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
-			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-			System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
-			System.Windows.Forms.DataVisualization.Charting.Series series15 = new System.Windows.Forms.DataVisualization.Charting.Series();
-			System.Windows.Forms.DataVisualization.Charting.Series series16 = new System.Windows.Forms.DataVisualization.Charting.Series();
+			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea13 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+			System.Windows.Forms.DataVisualization.Charting.Series series25 = new System.Windows.Forms.DataVisualization.Charting.Series();
+			System.Windows.Forms.DataVisualization.Charting.Series series26 = new System.Windows.Forms.DataVisualization.Charting.Series();
+			System.Windows.Forms.DataVisualization.Charting.Series series27 = new System.Windows.Forms.DataVisualization.Charting.Series();
+			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea14 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+			System.Windows.Forms.DataVisualization.Charting.Series series28 = new System.Windows.Forms.DataVisualization.Charting.Series();
+			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea15 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+			System.Windows.Forms.DataVisualization.Charting.Series series29 = new System.Windows.Forms.DataVisualization.Charting.Series();
+			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea16 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+			System.Windows.Forms.DataVisualization.Charting.Series series30 = new System.Windows.Forms.DataVisualization.Charting.Series();
+			System.Windows.Forms.DataVisualization.Charting.Series series31 = new System.Windows.Forms.DataVisualization.Charting.Series();
+			System.Windows.Forms.DataVisualization.Charting.Series series32 = new System.Windows.Forms.DataVisualization.Charting.Series();
 			this.l_O2 = new System.Windows.Forms.Label();
 			this.l_RoomVolume = new System.Windows.Forms.Label();
 			this.l_N2 = new System.Windows.Forms.Label();
@@ -149,8 +149,9 @@
 			// 
 			// cb_DeviceActive
 			// 
+			this.cb_DeviceActive.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.cb_DeviceActive.AutoSize = true;
-			this.cb_DeviceActive.Location = new System.Drawing.Point(407, 56);
+			this.cb_DeviceActive.Location = new System.Drawing.Point(415, 56);
 			this.cb_DeviceActive.Name = "cb_DeviceActive";
 			this.cb_DeviceActive.Size = new System.Drawing.Size(174, 20);
 			this.cb_DeviceActive.TabIndex = 10;
@@ -182,9 +183,10 @@
 			// 
 			// b_AddAstronaut
 			// 
+			this.b_AddAstronaut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.b_AddAstronaut.Location = new System.Drawing.Point(405, 27);
 			this.b_AddAstronaut.Name = "b_AddAstronaut";
-			this.b_AddAstronaut.Size = new System.Drawing.Size(159, 23);
+			this.b_AddAstronaut.Size = new System.Drawing.Size(176, 23);
 			this.b_AddAstronaut.TabIndex = 14;
 			this.b_AddAstronaut.Text = "Добавить космонавта";
 			this.b_AddAstronaut.UseVisualStyleBackColor = true;
@@ -192,6 +194,7 @@
 			// 
 			// l_NumberOfAstronauts
 			// 
+			this.l_NumberOfAstronauts.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.l_NumberOfAstronauts.AutoSize = true;
 			this.l_NumberOfAstronauts.Location = new System.Drawing.Point(404, 8);
 			this.l_NumberOfAstronauts.Name = "l_NumberOfAstronauts";
@@ -201,9 +204,10 @@
 			// 
 			// b_RemoveAstronaut
 			// 
-			this.b_RemoveAstronaut.Location = new System.Drawing.Point(573, 27);
+			this.b_RemoveAstronaut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.b_RemoveAstronaut.Location = new System.Drawing.Point(588, 27);
 			this.b_RemoveAstronaut.Name = "b_RemoveAstronaut";
-			this.b_RemoveAstronaut.Size = new System.Drawing.Size(155, 23);
+			this.b_RemoveAstronaut.Size = new System.Drawing.Size(172, 23);
 			this.b_RemoveAstronaut.TabIndex = 16;
 			this.b_RemoveAstronaut.Text = "Удалить космонавта";
 			this.b_RemoveAstronaut.UseVisualStyleBackColor = true;
@@ -211,6 +215,8 @@
 			// 
 			// p_MiniGraphics
 			// 
+			this.p_MiniGraphics.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
 			this.p_MiniGraphics.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.p_MiniGraphics.Controls.Add(this.cht_MiniAmountSubstance);
 			this.p_MiniGraphics.Controls.Add(this.cht_MiniPressure);
@@ -220,84 +226,85 @@
 			this.p_MiniGraphics.Controls.Add(this.l_O2);
 			this.p_MiniGraphics.Controls.Add(this.l_N2);
 			this.p_MiniGraphics.Controls.Add(this.l_CO2);
-			this.p_MiniGraphics.Dock = System.Windows.Forms.DockStyle.Left;
-			this.p_MiniGraphics.Location = new System.Drawing.Point(0, 0);
+			this.p_MiniGraphics.Location = new System.Drawing.Point(2, 0);
 			this.p_MiniGraphics.Name = "p_MiniGraphics";
-			this.p_MiniGraphics.Size = new System.Drawing.Size(236, 619);
+			this.p_MiniGraphics.Size = new System.Drawing.Size(234, 706);
 			this.p_MiniGraphics.TabIndex = 17;
 			// 
 			// cht_MiniAmountSubstance
 			// 
-			chartArea5.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
-			chartArea5.Name = "ChartArea1";
-			this.cht_MiniAmountSubstance.ChartAreas.Add(chartArea5);
+			chartArea13.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
+			chartArea13.Name = "ChartArea1";
+			this.cht_MiniAmountSubstance.ChartAreas.Add(chartArea13);
 			this.cht_MiniAmountSubstance.Location = new System.Drawing.Point(11, 447);
 			this.cht_MiniAmountSubstance.Name = "cht_MiniAmountSubstance";
-			series9.ChartArea = "ChartArea1";
-			series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-			series9.Color = System.Drawing.Color.Blue;
-			series9.Name = "Oxygen";
-			series10.ChartArea = "ChartArea1";
-			series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-			series10.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-			series10.Name = "Nitrogen";
-			series11.ChartArea = "ChartArea1";
-			series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-			series11.Color = System.Drawing.Color.Red;
-			series11.Name = "CarbonDiaxide";
-			this.cht_MiniAmountSubstance.Series.Add(series9);
-			this.cht_MiniAmountSubstance.Series.Add(series10);
-			this.cht_MiniAmountSubstance.Series.Add(series11);
+			series25.ChartArea = "ChartArea1";
+			series25.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+			series25.Color = System.Drawing.Color.Blue;
+			series25.Name = "Oxygen";
+			series26.ChartArea = "ChartArea1";
+			series26.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+			series26.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+			series26.Name = "Nitrogen";
+			series27.ChartArea = "ChartArea1";
+			series27.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+			series27.Color = System.Drawing.Color.Red;
+			series27.Name = "CarbonDiaxide";
+			this.cht_MiniAmountSubstance.Series.Add(series25);
+			this.cht_MiniAmountSubstance.Series.Add(series26);
+			this.cht_MiniAmountSubstance.Series.Add(series27);
 			this.cht_MiniAmountSubstance.Size = new System.Drawing.Size(206, 161);
 			this.cht_MiniAmountSubstance.TabIndex = 18;
 			this.cht_MiniAmountSubstance.Click += new System.EventHandler(this.cht_MiniAmountSubstance_Click);
 			// 
 			// cht_MiniPressure
 			// 
-			chartArea6.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
-			chartArea6.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			chartArea6.Name = "ChartArea1";
-			this.cht_MiniPressure.ChartAreas.Add(chartArea6);
+			chartArea14.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
+			chartArea14.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			chartArea14.Name = "ChartArea1";
+			this.cht_MiniPressure.ChartAreas.Add(chartArea14);
 			this.cht_MiniPressure.Location = new System.Drawing.Point(11, 223);
 			this.cht_MiniPressure.Name = "cht_MiniPressure";
-			series12.ChartArea = "ChartArea1";
-			series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-			series12.Color = System.Drawing.Color.Blue;
-			series12.Name = "Series1";
-			this.cht_MiniPressure.Series.Add(series12);
+			series28.ChartArea = "ChartArea1";
+			series28.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+			series28.Color = System.Drawing.Color.Blue;
+			series28.Name = "Series1";
+			this.cht_MiniPressure.Series.Add(series28);
 			this.cht_MiniPressure.Size = new System.Drawing.Size(206, 161);
 			this.cht_MiniPressure.TabIndex = 18;
 			this.cht_MiniPressure.Click += new System.EventHandler(this.cht_MiniPressure_Click);
 			// 
 			// cht_MiniTemperature
 			// 
-			chartArea7.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
-			chartArea7.AxisX.IsLabelAutoFit = false;
-			chartArea7.AxisY.Maximum = 50D;
-			chartArea7.AxisY.Minimum = 0D;
-			chartArea7.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			chartArea7.Name = "ChartArea1";
-			this.cht_MiniTemperature.ChartAreas.Add(chartArea7);
+			chartArea15.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
+			chartArea15.AxisX.IsLabelAutoFit = false;
+			chartArea15.AxisY.Maximum = 50D;
+			chartArea15.AxisY.Minimum = 0D;
+			chartArea15.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			chartArea15.Name = "ChartArea1";
+			this.cht_MiniTemperature.ChartAreas.Add(chartArea15);
 			this.cht_MiniTemperature.Location = new System.Drawing.Point(11, 30);
 			this.cht_MiniTemperature.Name = "cht_MiniTemperature";
-			series13.ChartArea = "ChartArea1";
-			series13.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-			series13.Color = System.Drawing.Color.Blue;
-			series13.Name = "Series1";
-			this.cht_MiniTemperature.Series.Add(series13);
+			series29.ChartArea = "ChartArea1";
+			series29.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+			series29.Color = System.Drawing.Color.Blue;
+			series29.Name = "Series1";
+			this.cht_MiniTemperature.Series.Add(series29);
 			this.cht_MiniTemperature.Size = new System.Drawing.Size(206, 161);
 			this.cht_MiniTemperature.TabIndex = 18;
 			this.cht_MiniTemperature.Click += new System.EventHandler(this.cht_MiniTemperature_Click);
 			// 
 			// p_FullGraphic
 			// 
+			this.p_FullGraphic.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.p_FullGraphic.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.p_FullGraphic.Controls.Add(this.l_Info);
 			this.p_FullGraphic.Controls.Add(this.cht_FullChart);
-			this.p_FullGraphic.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.p_FullGraphic.Location = new System.Drawing.Point(236, 104);
+			this.p_FullGraphic.Location = new System.Drawing.Point(237, 170);
 			this.p_FullGraphic.Name = "p_FullGraphic";
-			this.p_FullGraphic.Size = new System.Drawing.Size(755, 515);
+			this.p_FullGraphic.Size = new System.Drawing.Size(782, 536);
 			this.p_FullGraphic.TabIndex = 18;
 			// 
 			// l_Info
@@ -311,34 +318,38 @@
 			// 
 			// cht_FullChart
 			// 
-			chartArea8.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
-			chartArea8.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
-			chartArea8.Name = "ChartArea1";
-			this.cht_FullChart.ChartAreas.Add(chartArea8);
-			this.cht_FullChart.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.cht_FullChart.Location = new System.Drawing.Point(0, 71);
+			this.cht_FullChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			chartArea16.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
+			chartArea16.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.True;
+			chartArea16.Name = "ChartArea1";
+			this.cht_FullChart.ChartAreas.Add(chartArea16);
+			this.cht_FullChart.Location = new System.Drawing.Point(-2, 86);
 			this.cht_FullChart.Name = "cht_FullChart";
-			series14.ChartArea = "ChartArea1";
-			series14.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-			series14.Color = System.Drawing.Color.Blue;
-			series14.Name = "Series1";
-			series15.ChartArea = "ChartArea1";
-			series15.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-			series15.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-			series15.IsVisibleInLegend = false;
-			series15.Name = "Series2";
-			series16.ChartArea = "ChartArea1";
-			series16.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-			series16.Color = System.Drawing.Color.Red;
-			series16.Name = "Series3";
-			this.cht_FullChart.Series.Add(series14);
-			this.cht_FullChart.Series.Add(series15);
-			this.cht_FullChart.Series.Add(series16);
-			this.cht_FullChart.Size = new System.Drawing.Size(751, 440);
+			series30.ChartArea = "ChartArea1";
+			series30.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+			series30.Color = System.Drawing.Color.Blue;
+			series30.Name = "Series1";
+			series31.ChartArea = "ChartArea1";
+			series31.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+			series31.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+			series31.IsVisibleInLegend = false;
+			series31.Name = "Series2";
+			series32.ChartArea = "ChartArea1";
+			series32.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+			series32.Color = System.Drawing.Color.Red;
+			series32.Name = "Series3";
+			this.cht_FullChart.Series.Add(series30);
+			this.cht_FullChart.Series.Add(series31);
+			this.cht_FullChart.Series.Add(series32);
+			this.cht_FullChart.Size = new System.Drawing.Size(782, 446);
 			this.cht_FullChart.TabIndex = 0;
 			// 
 			// p_Control
 			// 
+			this.p_Control.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.p_Control.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.p_Control.Controls.Add(this.cb_DeviceActive);
 			this.p_Control.Controls.Add(this.l_RoomVolume);
@@ -348,17 +359,16 @@
 			this.p_Control.Controls.Add(this.l_DevicesTemperature);
 			this.p_Control.Controls.Add(this.b_AddAstronaut);
 			this.p_Control.Controls.Add(this.l_Ventilation);
-			this.p_Control.Dock = System.Windows.Forms.DockStyle.Top;
-			this.p_Control.Location = new System.Drawing.Point(236, 0);
+			this.p_Control.Location = new System.Drawing.Point(237, 0);
 			this.p_Control.Name = "p_Control";
-			this.p_Control.Size = new System.Drawing.Size(755, 108);
+			this.p_Control.Size = new System.Drawing.Size(782, 169);
 			this.p_Control.TabIndex = 19;
 			// 
 			// Simulation
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(991, 619);
+			this.ClientSize = new System.Drawing.Size(1019, 711);
 			this.Controls.Add(this.p_Control);
 			this.Controls.Add(this.p_FullGraphic);
 			this.Controls.Add(this.p_MiniGraphics);
